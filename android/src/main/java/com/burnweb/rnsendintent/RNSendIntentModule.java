@@ -647,10 +647,13 @@ public class RNSendIntentModule extends ReactContextBaseJavaModule {
       Intent sendIntent = new Intent(android.content.Intent.ACTION_VIEW, gmmIntentUri);
       sendIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-      //Check that an app exists to receive the intent
-      if (sendIntent.resolveActivity(this.reactContext.getPackageManager()) != null) {
-        this.reactContext.startActivity(sendIntent);
+      try {
+          this.reactContext.startActivity(sendIntent);
       }
+      catch (Exception ignored){
+
+      }
+
     }
 
     @ReactMethod
